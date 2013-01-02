@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>SmartMarks</title>
+        {# CSS and JS across the site #}
+        <link href="/static/css/bootstrap.css" rel="stylesheet">
+        <link href="/static/css/main.css" rel="stylesheet">
+        <script src="/static/js/jquery-1.8.3.min.js"></script>
+        <script src="/static/js/bootstrap.js"></script>
+
+        {# Page specific CSS #}
+        {% if page == 'sign in' or page == 'sign up' %}
+            <link href="/static/css/registration.css" rel="stylesheet">
+        {% elif page == 'index' or page == 'search' or page == 'bookmarks' or page == 'history' %}
+            <link href="/static/css/index.css" rel="stylesheet">
+        {% endif %}
+
+    </head>
+    <body>
+
+        {% if auth %}
+            {%- block navbar -%}
+            <div class="navbar navbar-fixed-top">
+                <div>
+                    <div class="container">
+                        <a href="/" class="brand">SmartMarks</a>
+                        <ul class="nav pull-right">
+                            <li>
+                                <a href="/create">Create Mark</a>
+                            </li>
+                            <li>
+                                <a href="/sign-out">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {%- endblock -%}
+        {% endif %}
+
+        <div class="container main-container">
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>

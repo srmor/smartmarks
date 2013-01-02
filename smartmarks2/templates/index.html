@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if marks %}
+        <ul class="marks">
+            <div class="subnav">
+                <a href="/" {% if page == 'index' %} class="selected" {% endif %}>All Marks</a>
+                <a href="/history" {% if page == 'history' %} class="selected" {% endif %}>History</a>
+                <a href="/bookmarks" {% if page == 'bookmarks' %} class="selected" {% endif %}>Bookmarks</a>
+                <form action="/search" method="GET" class="search pull-right">
+                    <input type="text" class="search" placeholder="Search" name="search">
+                    <input type="submit" class="btn" value="Search">
+                </form>
+            </div>
+            {% for mark in marks %}
+                <li>
+                    <h4>
+                        {% if mark.favicon %}
+                            <img width="16" src="{{ mark.favicon }}">
+                        {% endif %}
+                        <a href="{{ mark.url }}" title="{{ mark.title }}">
+                            {% if mark.title|length > 75 %}
+                                {{ mark.title[:75]+'...' }}
+                            {% else %}
+                                {{ mark.title }}
+                            {% endif %}
+                        </a>
+                    </h4>
+                    <span class="pull-right">{{ mark.visited_at.strftime('%m-%d-%Y %H:%M') }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="hero-unit">
+            <h2>Doesn't look like you have any Marks yet. Download the extension to get started.</h2>
+            <button class="btn">Download Chrome Extension</button>
+        </div>
+    {% endif %}
+{% endblock %}

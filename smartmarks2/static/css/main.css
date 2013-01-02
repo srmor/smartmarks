@@ -1,0 +1,30 @@
+body {
+    background-image: url('../img/grey_sandbag.png');
+}
+
+.main-container {
+    margin-top: 75px;
+}
+
+form {
+    margin: 0;
+}
+
+form input[type=text].search {
+    margin-bottom: 0;
+}
+
+form.search {
+    display: inline-block;
+    padding: 10px 15px 0 0;
+}
+
+.navbar > div {
+    padding: 10px 0;
+    background: rgba(0, 0, 0, 0.52);
+}
+
+.navbar div a.brand, .navbar div ul.nav a {
+    color: #fff;
+    text-shadow: none;
+}

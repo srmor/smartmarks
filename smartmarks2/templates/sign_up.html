@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <form action="?" method="post" class="form-signin">
+        <h2>Sign Up</h2>
+        {% if error %}
+            <h5 class="alert alert-error">{{ error }}</h5>
+        {% endif %}
+        <fieldset>
+            <input type="text" name="email" placeholder="email">
+        </fieldset>
+        <fieldset>
+            <input type="password" name="password" placeholder="password">
+        </fieldset>
+        <fieldset>
+            <input type="password" name="confirm-password" placeholder="confirm password">
+        </fieldset>
+        <fieldset>
+            <a class="btn" href="/sign-in">Sign In</a>
+            <button type="submit" class="btn btn-primary pull-right">Sign Up</button>
+        </fieldset>
+    </form>
+{% endblock %}
