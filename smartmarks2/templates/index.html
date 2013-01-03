@@ -8,7 +8,7 @@
                 <a href="/history" {% if page == 'history' %} class="selected" {% endif %}>History</a>
                 <a href="/bookmarks" {% if page == 'bookmarks' %} class="selected" {% endif %}>Bookmarks</a>
                 <form action="/search" method="GET" class="search pull-right">
-                    <input type="text" class="search" placeholder="Search" name="search">
+                    <input type="text" class="search" placeholder="Search" name="search" {% if search %} value="{{ search }}" {% endif %}>
                     <input type="submit" class="btn" value="Search">
                 </form>
             </div>
