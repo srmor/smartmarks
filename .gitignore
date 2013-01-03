@@ -36,3 +36,4 @@ nosetests.xml
 .DS_Store
 smartmarks2/smartmarks2/include/python2.7
 smartmarks2/smartmarks2/.Python
+.env
