@@ -54,7 +54,7 @@ def bookmarks(user_id):
     return render_template('index.html', auth=True, page="bookmarks", marks=marks)
 
 
-@app.route('/<type>/search')
+@app.route('/search')
 @logged_in
 def search(user_id):
     if request.args.get('search'):
