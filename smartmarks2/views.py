@@ -1,6 +1,6 @@
 from smartmarks2 import app
 from flask import request, redirect, render_template, url_for, session, abort
-from smartmarks2.models import Mark, User
+from smartmarks2.models import Mark, User, Invite
 from flask.ext.bcrypt import Bcrypt
 import hashlib
 import datetime
@@ -120,6 +120,7 @@ def sign_up():
             email = request.form['email']
             password = request.form['password']
             password_confirm = request.form['confirm-password']
+            invite = request.form['invite']
 
             if password != password_confirm:
                 return render_template('sign_up.html', auth=False, page="sign up", error="Your passwords do not match. Try again.")
@@ -128,21 +129,42 @@ def sign_up():
                 User.objects.get(email=email)
                 return render_template('sign_up.html', auth=False, page="sign up", error='An account with that email already exists.')
             except:
-                cur_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                rand_int = str(randint(0, 200))
-                api_key = hashlib.md5()
-                api_key.update(cur_time + email + rand_int)
 
-                new_user = User(
-                    email=email,
-                    password=bcrypt.generate_password_hash(password),
-                    api_key=api_key.hexdigest()
-                )
-                new_user.save()
+                try:
+                    # Check if invite code is valid and if valid set it as claimed
+                    code = Invite.objects.get(code=invite)
+                    code.update(set__claimed=True)
 
-                session['email'] = email
+                    # Create the new user
+                    cur_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    rand_int = str(randint(0, 200))
+                    api_key = hashlib.md5()
+                    api_key.update(cur_time + email + rand_int)
 
-                return redirect(url_for('index'))
+                    new_user = User(
+                        email=email,
+                        password=bcrypt.generate_password_hash(password),
+                        api_key=api_key.hexdigest()
+                    )
+                    new_user.save()
+
+                    session['email'] = email
+
+                    return redirect(url_for('index'))
+                except:
+                    return render_template('sign_up.html', auth=False, page="sign up", error='Your invite is invalid.')
+
+        elif request.args.get('invite'):
+            code = request.args.get('invite')
+
+            try:
+                invite = Invite.objects.get(code=code, claimed=False)
+                return render_template('sign_up.html', auth=False, page="sign up", invite=code)
+            except:
+                return render_template('not-allowed.html', auth=False, page="sign up")
+
+        else:
+            return render_template('not-allowed.html', auth=False, page="sign up")
 
         return render_template('sign_up.html', auth=False, page="sign up")
 

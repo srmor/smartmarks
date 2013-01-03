@@ -29,3 +29,12 @@ class User(db.Document):
 
     def get_id(self):
         return unicode(self.id)
+
+
+class Invite(db.Document):
+    date = db.DateTimeField(default=datetime.datetime.now, required=True)
+    code = db.StringField(max_length=10, required=True)
+    claimed = db.BooleanField(default=False)
+
+    def get_id(self):
+        return unicode(self.id)
