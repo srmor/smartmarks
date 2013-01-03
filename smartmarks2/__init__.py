@@ -2,7 +2,7 @@ from flask import Flask
 from flask.ext.mongoengine import MongoEngine
 import os
 app = Flask(__name__)
-# app.config["MONGODB_DB"] = "smartmarks"
+
 app.config["MONGODB_DB"] = os.environ["MONGODB_DB"]
 app.config["MONGODB_USERNAME"] = os.environ["MONGODB_USERNAME"]
 app.config["MONGODB_PASSWORD"] = os.environ["MONGODB_PASSWORD"]
