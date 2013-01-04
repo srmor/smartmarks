@@ -1,2 +1,2 @@
-from smartmarks2 import app
+from smartmarks import app
 app.run(debug=True)

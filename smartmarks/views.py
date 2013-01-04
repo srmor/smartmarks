@@ -1,6 +1,6 @@
-from smartmarks2 import app
+from smartmarks import app
 from flask import request, redirect, render_template, url_for, session, abort
-from smartmarks2.models import Mark, User, Invite
+from smartmarks.models import Mark, User, Invite
 from flask.ext.bcrypt import Bcrypt
 import hashlib
 import datetime
@@ -64,27 +64,6 @@ def search(user_id):
         return render_template('index.html', auth=True, page="search", search=search, marks=marks)
     else:
         return redirect(url_for('index'))
-
-
-@app.route('/create', methods=['GET', 'POST'])
-@logged_in
-def create(user_id):
-    if request.method == 'POST':
-        title = request.form['title']
-        url = request.form['url']
-
-        new_mark = Mark(
-            title=title,
-            url=url,
-            type='bookmark',
-            user=user_id
-        )
-
-        new_mark.save()
-
-        return redirect(url_for('index'))
-    else:
-        return render_template('create.html', auth=True, page="create")
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])

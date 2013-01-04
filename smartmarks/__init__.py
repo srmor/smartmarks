@@ -12,5 +12,5 @@ app.config["SECRET_KEY"] = "(\x9f\x050\xc0\x1f\x0cn\x1eD\xb8\xc9\xfb\xcd]\xb9\x8
 
 db = MongoEngine(app)
 
-import smartmarks2.views
-import smartmarks2.api_views
+import smartmarks.views
+import smartmarks.api_views

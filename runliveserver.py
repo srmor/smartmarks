@@ -1,4 +1,4 @@
-from smartmarks2 import app
+from smartmarks import app
 import os
 
 port = int(os.environ.get('PORT'))

@@ -1,7 +1,7 @@
-from smartmarks2 import app
+from smartmarks import app
 from flask import request, Response
 from crossdomain import crossdomain
-from smartmarks2.models import Mark, User
+from smartmarks.models import Mark, User
 from flask.ext.bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -13,6 +13,7 @@ def api_create():
     title = request.form['title']
     url = request.form['url']
     favicon = request.form['favicon']
+    type = request.form['type']
     api_key = request.form['api_key']
 
     cur_user = User.objects.get(api_key=api_key)
@@ -22,14 +23,14 @@ def api_create():
             title=title,
             url=url,
             favicon=favicon,
-            type='history',
+            type=type,
             user=cur_user.get_id()
         )
     else:
         new_mark = Mark(
             title=title,
             url=url,
-            type='history',
+            type=type,
             user=cur_user.get_id()
         )
 
