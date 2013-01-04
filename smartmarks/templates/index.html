@@ -26,7 +26,8 @@
                             {% endif %}
                         </a>
                     </h4>
-                    <span class="pull-right">{{ mark.visited_at.strftime('%m-%d-%Y %H:%M') }}</span>
+                    {# only show the last visited date for the url #}
+                    <span class="pull-right">{{ mark.visited_at[-1].date.strftime('%m-%d-%Y %H:%M') }}</span>
                 </li>
             {% endfor %}
         </ul>

@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>SmartMarks</title>
+        <title>{{ page }} - SmartMarks</title>
         {# CSS and JS across the site #}
         <link href="/static/css/bootstrap.css" rel="stylesheet">
         <link href="/static/css/main.css" rel="stylesheet">
@@ -10,9 +10,9 @@
         <script src="/static/js/bootstrap.js"></script>
 
         {# Page specific CSS #}
-        {% if page == 'sign in' or page == 'sign up' %}
+        {% if page == 'Sign In' or page == 'Sign Up' %}
             <link href="/static/css/registration.css" rel="stylesheet">
-        {% elif page == 'index' or page == 'search' or page == 'bookmarks' or page == 'history' %}
+        {% elif page == 'Home' or page == 'Search' or page == 'Bookmarks' or page == 'History' %}
             <link href="/static/css/index.css" rel="stylesheet">
         {% endif %}
 

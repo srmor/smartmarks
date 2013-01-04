@@ -28,9 +28,9 @@ def logged_in(fn):
 @app.route('/')
 @logged_in
 def index(user_id):
-    marks = Mark.objects.filter(user=user_id).order_by('-visited_at')
+    marks = Mark.objects.filter(user_id=user_id).order_by('-visited_at')
 
-    return render_template('index.html', auth=True, page="index", marks=marks)
+    return render_template('index.html', auth=True, page="Home", marks=marks)
 
 
 @app.errorhandler(401)
@@ -41,17 +41,17 @@ def no_auth(e):
 @app.route('/history')
 @logged_in
 def history(user_id):
-    marks = Mark.objects.filter(type='history', user=user_id).order_by('-visited_at')
+    marks = Mark.objects.filter(type='history', user_id=user_id).order_by('-visited_at')
 
-    return render_template('index.html', auth=True, page="history", marks=marks)
+    return render_template('index.html', auth=True, page="History", marks=marks)
 
 
 @app.route('/bookmarks')
 @logged_in
 def bookmarks(user_id):
-    marks = Mark.objects.filter(type='bookmark', user=user_id).order_by('-visited_at')
+    marks = Mark.objects.filter(type='bookmark', user_id=user_id).order_by('-visited_at')
 
-    return render_template('index.html', auth=True, page="bookmarks", marks=marks)
+    return render_template('index.html', auth=True, page="Bookmarks", marks=marks)
 
 
 @app.route('/search')
@@ -59,9 +59,9 @@ def bookmarks(user_id):
 def search(user_id):
     if request.args.get('search'):
         search = request.args.get('search').lower().strip()
-        marks = Mark.objects.filter(title=re.compile(re.escape(search), re.IGNORECASE), user=user_id).order_by('-visited_at')
+        marks = Mark.objects.filter(title=re.compile(re.escape(search), re.IGNORECASE), user_id=user_id).order_by('-visited_at')
 
-        return render_template('index.html', auth=True, page="search", search=search, marks=marks)
+        return render_template('index.html', auth=True, page="Search", search=search, marks=marks)
     else:
         return redirect(url_for('index'))
 
@@ -69,7 +69,7 @@ def search(user_id):
 @app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if 'email' in session:
-        return render_template('signed_in.html', auth=True, page="sign in")
+        return render_template('signed_in.html', auth=True, page="Sign In")
     else:
         if request.method == 'POST':
             email = request.form['email']
@@ -82,18 +82,18 @@ def sign_in():
 
                     return redirect((url_for('index')))
                 else:
-                    return render_template('sign_in.html', auth=False, page="sign in", error=True)
+                    return render_template('sign_in.html', auth=False, page="Sign In", error=True)
 
             except:
-                return render_template('sign_in.html', auth=False, page="sign in", error=True)
+                return render_template('sign_in.html', auth=False, page="Sign In", error=True)
 
-        return render_template('sign_in.html', auth=False, page="sign in")
+        return render_template('sign_in.html', auth=False, page="Sign In")
 
 
 @app.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
     if 'email' in session:
-        return render_template('signed_in.html', auth=True, page="sign up")
+        return render_template('signed_in.html', auth=True, page="Sign Up")
     else:
         if request.method == 'POST':
             email = request.form['email']
@@ -102,11 +102,11 @@ def sign_up():
             invite = request.form['invite']
 
             if password != password_confirm:
-                return render_template('sign_up.html', auth=False, page="sign up", error="Your passwords do not match. Try again.")
+                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your passwords do not match. Try again.")
 
             try:
                 User.objects.get(email=email)
-                return render_template('sign_up.html', auth=False, page="sign up", error='An account with that email already exists.')
+                return render_template('sign_up.html', auth=False, page="Sign Up", error='An account with that email already exists.')
             except:
 
                 try:
@@ -131,19 +131,19 @@ def sign_up():
 
                     return redirect(url_for('index'))
                 except:
-                    return render_template('sign_up.html', auth=False, page="sign up", error='Your invite is invalid.')
+                    return render_template('sign_up.html', auth=False, page="Sign Up", error='Your invite is invalid.')
 
         elif request.args.get('invite'):
             code = request.args.get('invite')
 
             try:
                 invite = Invite.objects.get(code=code, claimed=False)
-                return render_template('sign_up.html', auth=False, page="sign up", invite=code)
+                return render_template('sign_up.html', auth=False, page="Sign Up", invite=code)
             except:
-                return render_template('not-allowed.html', auth=False, page="sign up")
+                return render_template('not-allowed.html', auth=False, page="Sign Up")
 
         else:
-            return render_template('not-allowed.html', auth=False, page="sign up")
+            return render_template('not-allowed.html', auth=False, page="Sign Up")
 
         return render_template('sign_up.html', auth=False, page="sign up")
 

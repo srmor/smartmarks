@@ -1,7 +1,7 @@
 from smartmarks import app
 from flask import request, Response
 from crossdomain import crossdomain
-from smartmarks.models import Mark, User
+from smartmarks.models import MarkVisit, Mark, User
 from flask.ext.bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -18,25 +18,48 @@ def api_create():
 
     cur_user = User.objects.get(api_key=api_key)
 
-    if favicon != ' ':
-        new_mark = Mark(
-            title=title,
-            url=url,
-            favicon=favicon,
-            type=type,
-            user=cur_user.get_id()
-        )
-    else:
-        new_mark = Mark(
-            title=title,
-            url=url,
-            type=type,
-            user=cur_user.get_id()
-        )
+    # If the url has been visited before just add a new MarkVisit
+    try:
+        mark = Mark.objects.filter(url=url)[0]
 
-    new_mark.save()
+        mark_visit = MarkVisit()
+        mark.visited_at.append(mark_visit)
 
-    return new_mark.title
+        if mark.type != type and mark.type == 'history':
+            mark.type = type
+
+        if mark.title != title and type == 'bookmark':
+            mark.title = title
+
+        mark.save()
+
+        return mark.title
+
+    # If url hasn't been visited before then create a new mark
+    except:
+
+        if favicon != ' ':
+            new_mark = Mark(
+                title=title,
+                url=url,
+                favicon=favicon,
+                type=type,
+                user_id=cur_user.get_id()
+            )
+        else:
+            new_mark = Mark(
+                title=title,
+                url=url,
+                type=type,
+                user_id=cur_user.get_id()
+            )
+
+        mark_visit = MarkVisit()
+        new_mark.visited_at.append(mark_visit)
+
+        new_mark.save()
+
+        return new_mark.title
 
 
 @app.route('/api/sign-in', methods=['POST'])
