@@ -33,7 +33,10 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Others
 .DS_Store
-smartmarks/smartmarks/include/python2.7
-smartmarks/smartmarks/.Python
 .env
+
+# Don't track virtualenv
+smartmarks/smartmarks/
