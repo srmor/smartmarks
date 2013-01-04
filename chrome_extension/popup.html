@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/popup.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/popup.js"></script>
+    </head>
+    <body>
+        <form id="sign-in">
+            <h4>SmartMarks Sign In</h4>
+            <fieldset>
+                <input type="text" placeholder="email" name="email" class="email"/>
+            </fieldset>
+            <fieldset>
+                <input type="password" placeholder="password" name="password" class="password"/>
+            </fieldset>
+            <fieldset>
+                <input type="button" class="btn btn-primary pull-right" value="Sign In"/>
+            </fieldset>
+        </form>
+        <form id="bookmark">
+            <h4>Add Bookmark</h4>
+            <fieldset>
+                <input type="text" name="title" class="title"/>
+            </fieldset>
+            <fieldset>
+                <input type="text" name="url" class="url"/>
+            </fieldset>
+            <input type="hidden" name="favicon" class="favicon"/>
+            <fieldset>
+                <input type="button" class="btn btn-primary pull-right" value="Add Bookmark"/>
+            </fieldset>
+        </form>
+    </body>
+</html>
