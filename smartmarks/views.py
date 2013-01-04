@@ -1,28 +1,14 @@
 from smartmarks import app
-from flask import request, redirect, render_template, url_for, session, abort
+from flask import request, redirect, render_template, url_for, session
 from smartmarks.models import Mark, User, Invite
 from flask.ext.bcrypt import Bcrypt
 import hashlib
 import datetime
 from random import randint
-from functools import wraps
+from fxns import logged_in
 import re
 
 bcrypt = Bcrypt(app)
-
-
-def logged_in(fn):
-    @wraps(fn)
-    def decorator(*args, **kwargs):
-        if 'email' in session:
-            # If user is signed in get the user's id
-            email = session['email']
-            cur_user = User.objects.get(email=email)
-
-            return fn(cur_user.get_id())
-        else:
-            abort(401)
-    return decorator
 
 
 @app.route('/')
