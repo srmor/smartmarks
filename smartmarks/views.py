@@ -11,17 +11,19 @@ import re
 bcrypt = Bcrypt(app)
 
 
+# Error handlers
+@app.errorhandler(401)
+def no_auth(e):
+    return render_template('not-allowed.html')
+
+
+# Pages to view Marks
 @app.route('/')
 @logged_in
 def index(user_id):
     marks = Mark.objects.filter(user_id=user_id).order_by('-visited_at')
 
     return render_template('index.html', auth=True, page="Home", marks=marks)
-
-
-@app.errorhandler(401)
-def no_auth(e):
-    return render_template('not-allowed.html')
 
 
 @app.route('/history')
@@ -52,6 +54,7 @@ def search(user_id):
         return redirect(url_for('index'))
 
 
+# Pages to handle auth
 @app.route('/sign-in', methods=['GET', 'POST'])
 def sign_in():
     if 'email' in session:
