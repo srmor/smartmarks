@@ -19,12 +19,56 @@ form.search {
     padding: 10px 15px 0 0;
 }
 
-.navbar > div {
+.navbar.logged-in > div {
     padding: 10px 0;
     background: rgba(0, 0, 0, 0.52);
 }
 
-.navbar div a.brand, .navbar div ul.nav a {
+.navbar.logged-in div a.brand, .navbar div ul.nav a {
     color: #fff;
     text-shadow: none;
+}
+
+.navbar div ul.nav a:hover {
+    color: white;
+}
+
+.navbar.logged-in div a.brand {
+    font-family: 'Donegal One', serif;
+}
+
+.navbar.logged-out .container {
+    width: 1000px;
+    margin: auto;
+}
+
+.navbar.logged-out .btn {
+    margin-top: 20px;
+}
+
+.jumbotron.logged-out {
+    text-align: center;
+}
+
+.jumbotron.logged-out h1 {
+    margin-top: 30px;
+    font-size: 60px;
+    font-family: 'Donegal One', serif;
+}
+
+.jumbotron.logged-out p {
+    margin-top: 50px;
+}
+
+.jumbotron.logged-out form {
+    background: white;
+    padding: 10px;
+    width: 300px;
+    margin: 5px auto;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.jumbotron.logged-out .email {
+    margin-bottom: 0;
 }

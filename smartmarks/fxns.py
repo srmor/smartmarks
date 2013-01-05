@@ -1,4 +1,4 @@
-from flask import abort, session
+from flask import abort, session, render_template
 from functools import wraps
 from smartmarks.models import User
 
@@ -13,5 +13,8 @@ def logged_in(fn):
 
             return fn(cur_user.get_id())
         else:
-            abort(401)
+            if fn.__name__ == 'index':
+                return render_template('loggedout/index.html', auth=False, page="Home")
+            else:
+                abort(401)
     return decorator
