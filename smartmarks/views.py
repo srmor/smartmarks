@@ -30,6 +30,7 @@ def index():
 
         return render_template('index.html', auth=True, page="Home", marks=marks)
     else:
+        # if user is signing up to be notified when smarmarks launches
         if request.method == 'POST':
             email = request.form['email']
 
