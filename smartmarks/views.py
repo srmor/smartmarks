@@ -1,6 +1,6 @@
 from smartmarks import app
 from flask import request, redirect, render_template, url_for, session
-from smartmarks.models import Mark, User, Invite
+from smartmarks.models import Mark, User, Invite, SignUp
 from flask.ext.bcrypt import Bcrypt
 import hashlib
 import datetime
@@ -18,12 +18,34 @@ def no_auth(e):
 
 
 # Pages to view Marks
-@app.route('/')
-@logged_in
-def index(user_id):
-    marks = Mark.objects.filter(user_id=user_id).order_by('-visited_at')
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    # TODO: make this login check more elegant
+    if 'email' in session:
+        # If user is signed in get the user's id
+        email = session['email']
+        cur_user = User.objects.get(email=email)
 
-    return render_template('index.html', auth=True, page="Home", marks=marks)
+        marks = Mark.objects.filter(user_id=cur_user.get_id()).order_by('-visited_at')
+
+        return render_template('index.html', auth=True, page="Home", marks=marks)
+    else:
+        if request.method == 'POST':
+            email = request.form['email']
+
+            try:
+                sign_up = SignUp.objects.get(email=email)
+            except:
+                sign_up = SignUp(
+                    email=email
+                )
+
+                sign_up.save()
+
+            return render_template('loggedout/index.html', auth=False, page="Home", signed_up=True)
+
+        else:
+            return render_template('loggedout/index.html', auth=False, page="Home")
 
 
 @app.route('/history')

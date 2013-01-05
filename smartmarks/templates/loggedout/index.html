@@ -6,12 +6,16 @@
         <p class="lead">
             Bookmarks that save themselves. Never forget a website again.
         </p>
-        <p>
-            Launching soon... Sign up to be notified.
-        </p>
-        <form>
-            <input type="text" name="email" class="email" placeholder="Your Email"/>
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+        {% if signed_up %}
+            <h4>Thanks for signing up! We'll be in touch soon.</h4>
+        {% else %}
+            <p>
+                Launching soon... Sign up to be notified.
+            </p>
+            <form action="" method="POST">
+                <input type="text" name="email" class="email" placeholder="Your Email"/>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        {% endif %}
     </div>
 {% endblock %}

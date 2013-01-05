@@ -28,7 +28,7 @@ class Mark(db.Document):
 
 
 class User(db.Document):
-    ''' An SmartMarks user '''
+    ''' A SmartMarks user '''
     sign_up_date = db.DateTimeField(default=datetime.datetime.now, required=True)
     email = db.StringField(max_length=100, required=True)
     password = db.StringField(max_length=60, required=True)
@@ -46,3 +46,12 @@ class Invite(db.Document):
 
     def get_id(self):
         return unicode(self.id)
+
+
+class SignUp(db.Document):
+    ''' A beta sign up '''
+    sign_up_date = db.DateTimeField(default=datetime.datetime.now, required=True)
+    email = db.EmailField(max_length=100, required=True)
+
+    def __unicode__(self):
+        return self.email
