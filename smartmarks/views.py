@@ -101,9 +101,10 @@ def sign_in():
 
         return render_template('sign_in.html', auth=False, page="Sign In")
 
-
+# TODO: abstract more of the sign up view code
 @app.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    # if a user is signed in
     if 'email' in session:
         return render_template('signed_in.html', auth=True, page="Sign Up")
     else:
@@ -148,12 +149,15 @@ def sign_up():
         elif request.args.get('invite'):
             code = request.args.get('invite')
 
+            # check if invite code is valid and render the sign up form if it is
             try:
                 invite = Invite.objects.get(code=code, claimed=False)
                 return render_template('sign_up.html', auth=False, page="Sign Up", invite=code)
+            # otherwise show the not invited error page
             except:
                 return render_template('not-invited.html', auth=False, page="Sign Up")
 
+        # if the user visits the page without an invite at all show them the not invited error page
         else:
             return render_template('not-invited.html', auth=False, page="Sign Up")
 
