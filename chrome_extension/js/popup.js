@@ -1,4 +1,4 @@
-var baseUrl = 'http://localhost:5000';
+var baseUrl = 'http://www.smartmarks.co';
 
 var SmartMarks = {
     signIn: function() {
@@ -48,7 +48,7 @@ var SmartMarks = {
             statusCode: {
                 200: function(data) {
                     $('#bookmark .btn').hide();
-                    $('#bookmark .btn').after('<span class="bookmark-added pull-right">Bookmark Added</span>');
+                    $('#bookmark .btn').after('<span class="bookmark-added pull-right btn btn-success" disabled="disabled">Bookmark Added</span>');
                 }
             }
         });

@@ -1,5 +1,6 @@
-var baseUrl = 'http://localhost:5000';
+var baseUrl = 'http://www.smartmarks.co';
 
+// TODO: not very elegant - need to abstract parts of this away
 $(function () {
     chrome.extension.onMessage.addListener(
       function(request, sender, sendResponse) {
@@ -17,7 +18,7 @@ $(function () {
                 }
 
                 // if the page is a smartmarks page do not save it.
-                if (url.substring(0, 22) !== baseUrl+'/') {
+                if (url.substring(0, 25) !== baseUrl+'/') {
                     $.ajax({
                         type: 'POST',
                         url: baseUrl+'/api/create',
