@@ -151,10 +151,10 @@ def sign_up():
                 invite = Invite.objects.get(code=code, claimed=False)
                 return render_template('sign_up.html', auth=False, page="Sign Up", invite=code)
             except:
-                return render_template('not-allowed.html', auth=False, page="Sign Up")
+                return render_template('not-invited.html', auth=False, page="Sign Up")
 
         else:
-            return render_template('not-allowed.html', auth=False, page="Sign Up")
+            return render_template('not-invited.html', auth=False, page="Sign Up")
 
         return render_template('sign_up.html', auth=False, page="sign up")
 
