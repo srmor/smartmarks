@@ -25,9 +25,11 @@ def api_create():
         mark_visit = MarkVisit()
         mark.visited_at.append(mark_visit)
 
+        # if creating a bookmark and it was previously a history item change the type to 'bookmark'
         if mark.type != type and mark.type == 'history':
             mark.type = type
 
+        # If creating a bookmark and you change the title; change the title
         if mark.title != title and type == 'bookmark':
             mark.title = title
 
@@ -72,7 +74,9 @@ def api_sign_in():
         cur_user = User.objects.get(email=email)
         if bcrypt.check_password_hash(cur_user.password, password):
             return cur_user.api_key
+        # if passwords don't match throw 401
         else:
             return Response('Try Again', status=401, mimetype='application/json')
+    # if the email does not match a user throw a 401
     except:
         return Response('Try Again', status=401, mimetype='application/json')
