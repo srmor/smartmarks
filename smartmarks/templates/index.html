@@ -18,7 +18,7 @@
                         {% if mark.favicon %}
                             <img width="16" src="{{ mark.favicon }}">
                         {% endif %}
-                        <a href="{{ mark.url }}" title="{{ mark.title }}">
+                        <a href="{{ mark.url }}" title="{{ mark.title }}" target="_blank">
                             {% if mark.title|length > 75 %}
                                 {{ mark.title[:75]+'...' }}
                             {% else %}
@@ -41,7 +41,7 @@
                 <div class="main left">
                     <h2>1. Download the Chrome Extension</h2>
                     <p>
-                        The only way SmartMarks can do it's magic is if you add the SmartMarks chrome extension to your browser. Go to the <a href="https://chrome.google.com/webstore/detail/smartmarks/enknjhgpnblekiknabopmfogmpcefefa">Chrome Web Store</a> and click the big blue Add to Chrome button to get started.
+                        The only way SmartMarks can do it's magic is if you add the SmartMarks chrome extension to your browser. Go to the <a href="https://chrome.google.com/webstore/detail/smartmarks/enknjhgpnblekiknabopmfogmpcefefa" target="_blank">Chrome Web Store</a> and click the big blue Add to Chrome button to get started.
                     </p>
                 </div>
             </section>
