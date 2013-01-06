@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>{{ page }} {% if page %}- {% endif %}SmartMarks</title>
         {# CSS and JS across the site #}
+        <link rel="icon" type="image/png" href="/static/img/icon.png">
         <link href="/static/css/bootstrap.css" rel="stylesheet">
         <link href="/static/css/main.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Donegal+One' rel='stylesheet' type='text/css'>
@@ -15,6 +16,7 @@
             <link href="/static/css/registration.css" rel="stylesheet">
         {% elif page == 'Home' or page == 'Search' or page == 'Bookmarks' or page == 'History' %}
             <link href="/static/css/index.css" rel="stylesheet">
+            <link href="/static/css/setup.css" rel="stylesheet">
         {% endif %}
 
     </head>

@@ -1,0 +1,61 @@
+/* Main Chrome Extension Setup Styles */
+.setup-main {
+    margin: 0 0 20px 0;
+    background: white;
+    border-radius: 3px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+}
+
+.setup-main h1 {
+    text-align: center;
+    padding: 20px;
+    background: whitesmoke;
+    border-bottom: 1px solid #CACACA;
+    background-image: -webkit-linear-gradient(top, #F7F7F6, #E9E9E9);
+    margin: 0;
+}
+
+.setup-main section {
+    border-bottom: 1px solid #EEE;
+    padding: 20px;
+    clear: both;
+    overflow: hidden;
+}
+
+.setup-main section img {
+    vertical-align: middle;
+}
+
+.setup-main .right {
+    float: right;
+}
+
+.setup-main section:last-child {
+    border-bottom: none;
+}
+
+/* Image Styles */
+
+.setup-main .one img {
+    padding: 55px 0; /* Ghetto way to vertically middle-align the floated div - TODO: fix this */
+}
+
+.setup-main .two img {
+    width: 350px;
+    margin-top: 10px;
+}
+
+.setup-main .five img {
+    width: 375px;
+}
+
+/* Copy Styles */
+
+.setup-main .main {
+    min-width: 500px;
+    max-width: 700px;
+}
+
+.setup-main .main h2 {
+    font-size: 20px;
+}

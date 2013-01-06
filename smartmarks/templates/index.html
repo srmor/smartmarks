@@ -32,9 +32,63 @@
             {% endfor %}
         </ul>
     {% elif page != 'search' %}
-        <div class="hero-unit">
-            <h2>Doesn't look like you have any Marks yet. Download the extension to get started.</h2>
-            <button class="btn">Download Chrome Extension</button>
+        <div class="setup-main">
+            <h1>Welcome to SmartMarks!</h1>
+            <section class="one">
+                <div class="img right">
+                    <img src="/static/img/install1.png"/>
+                </div>
+                <div class="main left">
+                    <h2>1. Download the Chrome Extension</h2>
+                    <p>
+                        The only way SmartMarks can do it's magic is if you add the SmartMarks chrome extension to your browser. Go to the <a href="https://chrome.google.com/webstore/detail/smartmarks/enknjhgpnblekiknabopmfogmpcefefa">Chrome Web Store</a> and click the big blue Add to Chrome button to get started.
+                    </p>
+                </div>
+            </section>
+            <section class="two">
+                <div class="main right">
+                    <h2>2. Add the extension to Chrome</h2>
+                    <p>
+                        Once you click Add to Chrome you will be asked to add it. SmartMarks uses your data on websites, your history, and your tabs and browsing activity to give you the ability to easily find websites that you saw before, but want to find again. Click the Add button to add the extension to Chrome.
+                    </p>
+                </div>
+                <div class="img left">
+                    <img src="/static/img/install2.png"/>
+                </div>
+            </section>
+            <section class="three">
+                <div class="img right">
+                    <img src="/static/img/install4.png"/>
+                </div>
+                <div class="main left">
+                    <h2>3. Sign in to the extension</h2>
+                    <p>
+                        Now that the SmartMarks Chrome extension is downloaded you will see it at the right-hand corner of your browser. Click the SmartMarks icon and you will be prompted to sign in with your SmartMarks account. Once you sign in SmartMarks will automatically start remembering what websites you are browsing.
+                    </p>
+                </div>
+            </section>
+            <section class="four">
+                <div class="main right">
+                    <h2>4. Bookmark especially important websites</h2>
+                    <p>
+                        Once you are signed in you can at any time click the SmartMarks Chrome extension icon in the right-hand corner of Chrome to add the current page as a bookmark. You do not need to bookmark a page for SmartMarks to remember it, but if you think the page is especially important then bookmark it.
+                    </p>
+                </div>
+                <div class="img left">
+                    <img src="/static/img/install5.png"/>
+                </div>
+            </section>
+            <section class="five">
+                <div class="img right">
+                    <img src="/static/img/install6.png"/>
+                </div>
+                <div class="main left">
+                    <h2>Go back to browsing</h2>
+                    <p>
+                        That's all. You might as well go back to browsing because now we are saving everything for you. You can easily come back here (<a href="http://www.smartmarks.com/">www.smartmarks.com</a>) at any time to view and search your history and bookmarks. Right now the search makes it easier to find history items by title, but we will be adding more powerful ways of searching your history.
+                    </p>
+                </div>
+            </section>
         </div>
     {% endif %}
 {% endblock %}
