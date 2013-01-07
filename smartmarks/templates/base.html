@@ -4,19 +4,18 @@
         <meta charset="utf-8">
         <title>{{ page }} {% if page %}- {% endif %}SmartMarks</title>
         {# CSS and JS across the site #}
-        <link rel="icon" type="image/png" href="/static/img/favicon.png">
-        <link href="/static/css/bootstrap.css" rel="stylesheet">
-        <link href="/static/css/main.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="{{ getImg('favicon.png') }}">
+        <link href="{{ getCss('bootstrap.css') }}" rel="stylesheet">
+        <link href="{{ getCss('main.css') }}" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Donegal+One' rel='stylesheet' type='text/css'>
-        <script src="/static/js/jquery-1.8.3.min.js"></script>
-        <script src="/static/js/bootstrap.js"></script>
+        <script src="{{ getJs('jquery-1.8.3.min.js') }}"></script>
 
         {# Page specific CSS #}
         {% if page == 'Sign In' or page == 'Sign Up' %}
-            <link href="/static/css/registration.css" rel="stylesheet">
+            <link href="{{ getCss('registration.css') }}" rel="stylesheet">
         {% elif page == 'Home' or page == 'Search' or page == 'Bookmarks' or page == 'History' %}
-            <link href="/static/css/index.css" rel="stylesheet">
-            <link href="/static/css/setup.css" rel="stylesheet">
+            <link href="{{ getCss('index.css') }}" rel="stylesheet">
+            <link href="{{ getCss('setup.css') }}" rel="stylesheet">
         {% endif %}
 
     </head>

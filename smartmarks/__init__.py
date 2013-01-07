@@ -12,5 +12,8 @@ app.config["SECRET_KEY"] = "(\x9f\x050\xc0\x1f\x0cn\x1eD\xb8\xc9\xfb\xcd]\xb9\x8
 
 db = MongoEngine(app)
 
+from smartmarks.fxns import getCss, getJs, getImg
+app.jinja_env.globals.update(getCss=getCss, getJs=getJs, getImg=getImg)
+
 import smartmarks.views
 import smartmarks.api_views

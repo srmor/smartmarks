@@ -19,3 +19,14 @@ def logged_in(fn):
                 abort(401)
     return decorator
 
+
+def getCss(file):
+    return '/static/css/' + file
+
+
+def getJs(file):
+    return '/static/js/' + file
+
+
+def getImg(file):
+    return '/static/img/' + file
