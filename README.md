@@ -8,7 +8,7 @@ Right now SmartMarks is a WIP. There is a Chrome Extension and the web applicati
 
 ## Future Plans
 
-I plan to continue to build out SmartMarks to make finding a website you visited but forgot the URL for very easy. To do this I plan to gather information like meta tags and crawling user's history. To see what exact steps I plan to take next check out the issues page.
+I plan to continue to build out SmartMarks to make finding a website you visited but forgot the URL for very easy. To do this I plan to gather information like meta tags and crawling user's history. To see what exact steps I plan to take next check out the [issues page](https://github.com/srmor/smartmarks/issues).
 
 ## Technologies Used
 
