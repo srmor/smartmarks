@@ -101,6 +101,7 @@ def sign_in():
 
         return render_template('sign_in.html', auth=False, page="Sign In")
 
+
 # TODO: abstract more of the sign up view code
 @app.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
@@ -115,7 +116,9 @@ def sign_up():
             invite = request.form['invite']
 
             if password != password_confirm:
-                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your passwords do not match. Try again.")
+                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your passwords do not match. Please enter it again.")
+            elif len(password) < 8:
+                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your password needs to be at least 8 characters long.")
 
             try:
                 User.objects.get(email=email)
