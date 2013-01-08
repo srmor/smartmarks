@@ -12,7 +12,11 @@ ul.marks {
     border-bottom: 1px solid #EEE;
 }
 
-.marks li:hover {
+.marks li h2 {
+    text-align: center;
+}
+
+.marks li.mark:hover {
     background-color: #FBFBFB;
 }
 

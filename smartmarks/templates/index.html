@@ -13,7 +13,7 @@
                 </form>
             </div>
             {% for mark in marks %}
-                <li>
+                <li class="mark">
                     <h4>
                         {% if mark.favicon %}
                             <img width="16" src="{{ mark.favicon }}">
@@ -31,7 +31,7 @@
                 </li>
             {% endfor %}
         </ul>
-    {% elif page != 'search' %}
+    {% elif page != 'Search' and page != 'Bookmarks' %}
         <div class="setup-main">
             <h1>Welcome to SmartMarks!</h1>
             <section class="one">
@@ -90,5 +90,26 @@
                 </div>
             </section>
         </div>
+    {% else %}
+        <ul class="marks">
+            <div class="subnav">
+                <a href="/" {% if page == 'Home' %} class="selected" {% endif %}>All Marks</a>
+                <a href="/history" {% if page == 'History' %} class="selected" {% endif %}>History</a>
+                <a href="/bookmarks" {% if page == 'Bookmarks' %} class="selected" {% endif %}>Bookmarks</a>
+                <form action="/search" method="GET" class="search pull-right">
+                    <input type="text" class="search" placeholder="Search" name="search" value="{{ search }}">
+                    <input type="submit" class="btn" value="Search">
+                </form>
+            </div>
+            <li>
+                <h2>
+                    {% if page == 'Search' %}
+                        There are no search results.
+                    {% else %}
+                        You do not have any bookmarks yet.
+                    {% endif %}
+                </h2>
+            </li>
+        </ul>
     {% endif %}
 {% endblock %}
