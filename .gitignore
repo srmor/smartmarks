@@ -39,4 +39,4 @@ nosetests.xml
 .env
 
 # Don't track virtualenv
-smartmarks/smartmarks/
+smartmarks/smartmarks2/
