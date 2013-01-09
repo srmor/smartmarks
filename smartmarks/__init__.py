@@ -8,7 +8,7 @@ app.config["MONGODB_USERNAME"] = os.environ["MONGODB_USERNAME"]
 app.config["MONGODB_PASSWORD"] = os.environ["MONGODB_PASSWORD"]
 app.config["MONGODB_HOST"] = os.environ["MONGODB_HOST"]
 app.config["MONGODB_PORT"] = os.environ["MONGODB_PORT"]
-app.config["SECRET_KEY"] = "(\x9f\x050\xc0\x1f\x0cn\x1eD\xb8\xc9\xfb\xcd]\xb9\x82@\x8d\xa1\xcc\x0fqw"
+app.config["SECRET_KEY"] = os.environ["SECRET_KEY"]
 
 db = MongoEngine(app)
 
