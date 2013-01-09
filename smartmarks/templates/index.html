@@ -31,6 +31,28 @@
                 </li>
             {% endfor %}
         </ul>
+        {% if last_page > 1 %}
+            <ul class="pager">
+                {% if cur_page == 1 %}
+                    <li class="previous disabled">
+                        <span>&larr; Older</span>
+                    </li>
+                {% else %}
+                    <li class="previous">
+                        <a href="?pg={{ cur_page - 1 }}">&larr; Older</a>
+                    </li>
+                {% endif %}
+                {% if cur_page == last_page %}
+                    <li class="next disabled">
+                        <span>Newer &rarr;</span>
+                    </li>
+                {% else %}
+                    <li class="next">
+                    <a href="?pg={{ cur_page + 1 }}">Newer &rarr;</a>
+                </li>
+                {% endif %}
+            </ul>
+        {% endif %}
     {% elif page != 'Search' and page != 'Bookmarks' %}
         <div class="setup-main">
             <h1>Welcome to SmartMarks!</h1>

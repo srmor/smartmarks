@@ -5,8 +5,9 @@ from flask.ext.bcrypt import Bcrypt
 import hashlib
 import datetime
 from random import randint
-from fxns import logged_in
+from fxns import logged_in, get_result_num_by_page
 import re
+import math
 
 bcrypt = Bcrypt(app)
 
@@ -26,9 +27,16 @@ def index():
         email = session['email']
         cur_user = User.objects.get(email=email)
 
-        marks = Mark.objects.filter(user_id=cur_user.get_id()).order_by('-visited_at')
+        result_nums = get_result_num_by_page(request)
+        page = result_nums[0]
+        start_result = result_nums[1]
+        end_result = result_nums[2]
 
-        return render_template('index.html', auth=True, page="Home", marks=marks)
+        marks = Mark.objects.filter(user_id=cur_user.get_id()).order_by('-visited_at')[start_result:end_result]
+        mark_num = Mark.objects.filter(user_id=cur_user.get_id()).order_by('-visited_at').count()
+        total_pages = int(math.ceil(mark_num / 20)) + 1
+
+        return render_template('index.html', auth=True, page="Home", marks=marks, cur_page=page, last_page=total_pages)
     else:
         # if user is signing up to be notified when smarmarks launches
         if request.method == 'POST':
@@ -52,17 +60,33 @@ def index():
 @app.route('/history')
 @logged_in
 def history(user_id):
-    marks = Mark.objects.filter(type='history', user_id=user_id).order_by('-visited_at')
+    result_nums = get_result_num_by_page(request)
+    page = result_nums[0]
+    start_result = result_nums[1]
+    end_result = result_nums[2]
 
-    return render_template('index.html', auth=True, page="History", marks=marks)
+    marks = Mark.objects.filter(type='history', user_id=user_id).order_by('-visited_at')[start_result:end_result]
+    mark_num = Mark.objects.filter(type='history', user_id=user_id).order_by('-visited_at').count()
+    total_pages = int(math.ceil(mark_num / 20)) + 1
+
+    return render_template('index.html', auth=True, page="History", marks=marks, cur_page=page, last_page=total_pages)
 
 
 @app.route('/bookmarks')
 @logged_in
 def bookmarks(user_id):
+    result_nums = get_result_num_by_page(request)
+    page = result_nums[0]
+    start_result = result_nums[1]
+    end_result = result_nums[2]
+
+    marks = Mark.objects.filter(type='bookmarks', user_id=user_id).order_by('-visited_at')[start_result:end_result]
+    mark_num = Mark.objects.filter(type='bookmarks', user_id=user_id).order_by('-visited_at').count()
+    total_pages = int(math.ceil(mark_num / 20)) + 1
+
     marks = Mark.objects.filter(type='bookmark', user_id=user_id).order_by('-visited_at')
 
-    return render_template('index.html', auth=True, page="Bookmarks", marks=marks)
+    return render_template('index.html', auth=True, page="Bookmarks", marks=marks, cur_page=page, last_page=total_pages)
 
 
 @app.route('/search')

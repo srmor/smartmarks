@@ -30,3 +30,14 @@ def getJs(file):
 
 def getImg(file):
     return '/static/img/' + file
+
+def get_result_num_by_page(request):
+    if request.args.get('pg'):
+        page = int(request.args.get('pg'))
+    else:
+        page = 1
+
+    start_result = 20 * (page - 1)
+    end_result = 20 * page
+
+    return page, start_result, end_result
