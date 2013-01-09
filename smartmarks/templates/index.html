@@ -35,20 +35,20 @@
             <ul class="pager">
                 {% if cur_page == 1 %}
                     <li class="previous disabled">
-                        <span>&larr; Older</span>
+                        <span>&larr; Newer</span>
                     </li>
                 {% else %}
                     <li class="previous">
-                        <a href="?pg={{ cur_page - 1 }}">&larr; Older</a>
+                        <a href="?pg={{ cur_page - 1 }}">&larr; Newer</a>
                     </li>
                 {% endif %}
                 {% if cur_page == last_page %}
                     <li class="next disabled">
-                        <span>Newer &rarr;</span>
+                        <span>Older &rarr;</span>
                     </li>
                 {% else %}
                     <li class="next">
-                    <a href="?pg={{ cur_page + 1 }}">Newer &rarr;</a>
+                    <a href="?pg={{ cur_page + 1 }}">Older &rarr;</a>
                 </li>
                 {% endif %}
             </ul>
