@@ -1,7 +1,6 @@
 from smartmarks import app
 import unittest
 from smartmarks.models import Invite
-import sys
 
 
 class SmartMarksTest(unittest.TestCase):
