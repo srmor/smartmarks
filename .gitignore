@@ -40,3 +40,6 @@ nosetests.xml
 
 # Don't track virtualenv
 smartmarks/smartmarks2/
+
+# Don't track bash_profile
+bash_profile
