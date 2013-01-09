@@ -93,10 +93,18 @@ def bookmarks(user_id):
 @logged_in
 def search(user_id):
     if request.args.get('search'):
-        search = request.args.get('search').lower().strip()
-        marks = Mark.objects.filter(title=re.compile(re.escape(search), re.IGNORECASE), user_id=user_id).order_by('-visited_at')
+        result_nums = get_result_num_by_page(request)
+        page = result_nums[0]
+        start_result = result_nums[1]
+        end_result = result_nums[2]
 
-        return render_template('index.html', auth=True, page="Search", search=search, marks=marks)
+        search = request.args.get('search').lower().strip()
+
+        marks = Mark.objects.filter(title=re.compile(re.escape(search), re.IGNORECASE), user_id=user_id).order_by('-visited_at')[start_result:end_result]
+        mark_num = Mark.objects.filter(title=re.compile(re.escape(search), re.IGNORECASE), user_id=user_id).order_by('-visited_at').count()
+        total_pages = int(math.ceil(mark_num / 20)) + 1
+
+        return render_template('index.html', auth=True, page="Search", search=search, marks=marks, cur_page=page, last_page=total_pages)
     else:
         return redirect(url_for('index'))
 
