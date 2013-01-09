@@ -35,7 +35,7 @@ def api_create():
 
         mark.save()
 
-        return mark.id
+        return mark.title
 
     # If url hasn't been visited before then create a new mark
     except:
@@ -61,7 +61,7 @@ def api_create():
 
         new_mark.save()
 
-        return new_mark.id
+        return new_mark.title
 
 
 @app.route('/api/sign-in', methods=['POST'])
