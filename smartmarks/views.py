@@ -154,7 +154,7 @@ def sign_up():
 
             try:
                 User.objects.get(email=email)
-                return render_template('sign_up.html', auth=False, page="Sign Up", error='An account with that email already exists.')
+                return render_template('sign_up.html', auth=False, page="Sign Up", invite=invite, error='An account with that email already exists.')
             except:
 
                 try:
