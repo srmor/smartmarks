@@ -148,9 +148,9 @@ def sign_up():
             invite = request.form['invite']
 
             if password != password_confirm:
-                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your passwords do not match. Please enter it again.")
+                return render_template('sign_up.html', auth=False, page="Sign Up", invite=invite, error="Your passwords do not match. Please enter it again.")
             elif len(password) < 8:
-                return render_template('sign_up.html', auth=False, page="Sign Up", error="Your password needs to be at least 8 characters long.")
+                return render_template('sign_up.html', auth=False, page="Sign Up", invite=invite, error="Your password needs to be at least 8 characters long.")
 
             try:
                 User.objects.get(email=email)
@@ -179,7 +179,7 @@ def sign_up():
 
                     return redirect(url_for('index'))
                 except:
-                    return render_template('sign_up.html', auth=False, page="Sign Up", error='Your invite is invalid.')
+                    return render_template('not-invited.html', auth=False, page="Sign Up")
 
         elif request.args.get('invite'):
             code = request.args.get('invite')
