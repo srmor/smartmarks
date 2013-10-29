@@ -1,4 +1,4 @@
-# SmartMarks (http://www.smartmarks.co/)
+# [SmartMarks](http://www.smartmarks.co/)
 
 SmartMarks is a web application and browser extension which attempts to replace current browser bookmarking with a better alternative. The basic idea is that current browser bookmarking is useless because you usually do not remember to bookmark a site that could be useful later and when you do it gets lost among the many other bookmarks you have. SmartMarks attempts to make bookmarking a thing of the past. It does this by remembering every site you visit and then using different data about the sites to make searching your history extremely easy.
 
